@@ -1,17 +1,25 @@
 {
   "name": "triple-twist-server",
   "version": "0.0.0",
+  "license": "CC-BY-NC-4.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodejs src/main.js",
+    "test": "mocha test/ --recursive",
+    "cov": "nyc --reporter=html mocha test/ --recursive",
+    "tsc": "tsc"
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "ejs": "~2.5.7",
-    "express": "~4.15.5",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "express": "^4.15.2",
+    "node-wget": "^0.4.2",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^9.4.6",
+    "chai": "~3.5.0",
+    "mocha": "~2.4.5",
+    "source-map-support": "^0.4.15"
   }
 }
