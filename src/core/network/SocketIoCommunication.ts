@@ -36,6 +36,8 @@ export default class SocketIoCommunication implements Communication {
                     data.teamId
                 )
             );
+
+            socket.emit("loggedin", {ok: true});
         }
     }
 };
