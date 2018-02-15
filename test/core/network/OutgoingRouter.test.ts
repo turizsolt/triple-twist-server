@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import Router from "../../../src/core/network/Router";
+import OutgoingRouter from "../../../src/core/network/OutgoingRouter";
 import Peer from "../../../src/core/network/Peer";
 import {Socket} from "socket.io";
 import {GeneralSocket} from "../../../src/core/network/GeneralSocket";
@@ -9,14 +9,14 @@ const MESSAGE = "message";
 const TEST_DATA = {ok: true};
 const TEAM_ID = 0;
 
-describe("Router", () => {
-    var router:Router;
+describe("OutgoingRouter", () => {
+    var router:OutgoingRouter;
     var callback:sinon.SinonSpy;
     var socket:GeneralSocket;
     var peer:Peer;
 
     beforeEach(() => {
-        router = new Router();
+        router = new OutgoingRouter();
         callback = sinon.spy();
         socket = {
             emit: callback,
@@ -33,7 +33,7 @@ describe("Router", () => {
 
     it("Added peer does not emit", () => {
         router.registerPeer(peer);
-        router.send(PeerType.Screen, MESSAGE, TEST_DATA, TEAM_ID);
+        router.send(PeerType.Screen, MESSAGE, TEST_DATA);
         expect(callback.called).false;
     });
 });
