@@ -6,3 +6,7 @@ node_modules/*
 # coverage
 .nyc_output/*
 coverage/*
+
+# own
+log/*
+

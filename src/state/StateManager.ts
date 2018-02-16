@@ -1,6 +1,8 @@
 import IncomingRouter from "../core/network/IncomingRouter";
 import OutgoingRouter from "../core/network/OutgoingRouter";
 import ButtonGameServer from "./ButtonGameServer";
+import GamePickerServer from "./GamePickerServer";
+import GamePickedServer from "./GamePickedServer";
 
 export default class StateManager {
 
@@ -31,7 +33,19 @@ export default class StateManager {
                     this.currentState.release();
                     delete this.currentState;
                 }
-                this.currentState = new ButtonGameServer(this.incoming, this.outgoing);
+
+                switch(parameters.changeTo) {
+                    case "button-game":
+                        this.currentState = new ButtonGameServer(this.incoming, this.outgoing);
+                        break;
+                    case "game-picker":
+                        this.currentState = new GamePickerServer(this.incoming, this.outgoing);
+                        break;
+                    case "game-picked":
+                        this.currentState = new GamePickedServer(this.incoming, this.outgoing);
+                        break;
+
+                }
 
                 break;
 

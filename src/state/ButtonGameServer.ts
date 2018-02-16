@@ -11,6 +11,7 @@ export default class ButtonGameServer extends Server {
     ) {
         super(incoming, outgoing, "button-game");
         this.data = { counter: 0 };
+        this.emitChanged();
     }
 
     onMessage(event, parameters) {
