@@ -7,8 +7,8 @@ import TeamSet from '../team/TeamSet';
 import TeamResult from '../team/TeamResult';
 import Card from '../team/TeamCard';
 import Member from '../team/Member';
-import Util from '../../../core/util/Util';
-import Countdown from '../../../core/util/Countdown';
+import Util from '../../core/util/Util';
+import Countdown from '../../core/util/Countdown';
 import PickingCardQueue from "./PickingCardQueue";
 import QueueCard from "../team/QueueCard";
 

@@ -2,14 +2,14 @@
  * Created by zsiri on 2015.10.01..
  */
 
-import Util from '../../../core/util/Util';
+import Util from '../../core/util/Util';
 
 import Team from './Team';
 import TeamResult from './TeamResult';
 import Member from './Member';
 
 import Card from './TeamCard';
-import Config from "../../../../configs/Config";
+import Config from "../../../configs/Config";
 
 // team
 export default class TeamSet {

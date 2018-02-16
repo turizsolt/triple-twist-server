@@ -7,8 +7,8 @@ export default class Server {
     protected MESSAGE_TYPE:string;
 
     constructor(
-        private incoming:IncomingRouter,
-        private outgoing:OutgoingRouter,
+        protected incoming:IncomingRouter,
+        protected outgoing:OutgoingRouter,
         message_type: string
     ) {
         this.MESSAGE_TYPE = message_type;
@@ -19,9 +19,7 @@ export default class Server {
         this.incoming.unregisterMessageProcessor(this.MESSAGE_TYPE);
     }
 
-    onMessage(event, parameters) {
-        console.log("bla-bla");
-    };
+    onMessage(event, parameters) {};
 
     protected emit(options:TypelessEmitOptions) {
         this.outgoing.emit({
