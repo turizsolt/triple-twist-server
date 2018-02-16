@@ -18,14 +18,14 @@ export default class StateManager {
         switch(event) {
             case "change":
                 console.log(event);
-                var message = {
+
+                this.outgoing.emit({
                     type: "state",
                     event: "change",
                     parameters: {
                         changeTo: parameters.changeTo
                     }
-                };
-                this.outgoing.send(PeerType.All, "message", message);
+                });
 
                 if(this.currentState && this.currentState.release) {
                     this.currentState.release();

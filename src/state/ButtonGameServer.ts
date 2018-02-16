@@ -1,22 +1,19 @@
 import IncomingRouter from "../core/network/IncomingRouter";
 import OutgoingRouter from "../core/network/OutgoingRouter";
+import Server from "./Server";
 
-export default class ButtonGameServer {
+export default class ButtonGameServer extends Server {
     data: { counter: number };
 
     constructor(
-        private incoming:IncomingRouter,
-        private outgoing:OutgoingRouter
+        incoming:IncomingRouter,
+        outgoing:OutgoingRouter
     ) {
+        super(incoming, outgoing, "button-game");
         this.data = { counter: 0 };
-        this.incoming.registerMessageProcessor("button-game", this.onMessage);
     }
 
-    release() {
-        this.incoming.unregisterMessageProcessor("button-game");
-    }
-
-    private onMessage = (event, parameters) => {
+    onMessage(event, parameters) {
         if (event) {
             switch (event) {
                 case 'increment': this.increment(); break;
@@ -27,17 +24,16 @@ export default class ButtonGameServer {
 
     private increment() {
         this.data.counter++;
-        this.outgoing.send(PeerType.All, 'button-game', {
-            type: "button-game",
-            event: "changed",
-            parameters: this.data
-        });
+        this.emitChanged();
     }
 
     private zero() {
         this.data.counter = 0;
-        this.outgoing.send(PeerType.All, 'button-game', {
-            type: "button-game",
+        this.emitChanged();
+    }
+
+    private emitChanged() {
+        this.emit({
             event: "changed",
             parameters: this.data
         });
