@@ -4,9 +4,9 @@
   "license": "CC-BY-NC-4.0",
   "private": true,
   "scripts": {
-    "start": "nodejs src/main.js",
-    "test": "mocha test/ --recursive",
-    "cov": "nyc --reporter=html mocha test/ --recursive",
+    "start": "nodejs -r source-map-support/register src/main.js",
+    "test": "mocha test/ --recursive --require source-map-support/register",
+    "cov": "nyc --reporter=html mocha test/ --recursive --require source-map-support/register",
     "tsc": "tsc"
   },
   "dependencies": {
@@ -22,6 +22,6 @@
     "chai": "~3.5.0",
     "mocha": "~2.4.5",
     "sinon": "^4.3.0",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.18"
   }
 }
