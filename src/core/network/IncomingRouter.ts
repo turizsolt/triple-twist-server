@@ -6,7 +6,7 @@ export default class IncomingRouter {
     constructor() {
     }
 
-    onMessage(data:any) {
+    onMessage = (data:any) => {
         if(data.type) {
             let type = data.type;
             if(this.messageProcessors[type]) {
@@ -17,11 +17,11 @@ export default class IncomingRouter {
         }
     }
 
-    registerMessageProcessor(type: string, fn: MessageCallback):void {
+    registerMessageProcessor = (type: string, fn: MessageCallback) => {
         this.messageProcessors[type] = fn;
     }
 
-    unregisterMessageProcessor(type: string):void {
+    unregisterMessageProcessor = (type: string) => {
         this.messageProcessors[type] = null;
         delete this.messageProcessors[type];
     }
