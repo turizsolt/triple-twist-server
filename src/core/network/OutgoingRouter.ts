@@ -14,7 +14,7 @@ export default class OutgoingRouter {
 
     emit = (options: EmitOptions) => {
         this.peers
-            .filter(peer => peer.match(options.to || PeerType.All, options.teamId || -1))
+            .filter(peer => peer.match((options.to !== undefined?options.to:PeerType.All), (options.teamId !== undefined)?options.teamId:-1 ))
             .map(peer => peer.emit(options.type || "message", OutgoingRouter.getMessageData(options)));
     };
 
