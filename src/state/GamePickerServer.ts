@@ -43,8 +43,10 @@ export default class GamePickerServer extends Server {
     }
 
     release() {
-        console.log('released GPS');
-        this.picking.abortPickingProcess();
+        if(this.counter > 1 && !this.picking.isAllTeamsAreReady()) {
+            console.log('released GPS');
+            this.picking.abortPickingProcess();
+        }
     }
 
     private emitInitial() {
