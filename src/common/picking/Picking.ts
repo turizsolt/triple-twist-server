@@ -176,7 +176,8 @@ export default class Picking {
 
             //a. too much members, not possible
             if (memberList.length > this.getMemberPlaysCount()) {
-                throw new Error("Too much members.");
+                //throw new Error("Too much members.");
+                this.memberList[i] = this.memberList[i].slice(0,this.getMemberPlaysCount());
 
             //b. need to add some random people
             } else if (memberList.length < this.getMemberPlaysCount()) {
