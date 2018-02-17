@@ -67,6 +67,12 @@ export default class Picking {
         this.countdown = new Countdown(_second, _tick, _over);
     }
 
+    public abortPickingProcess() {
+        this.countdown.abort();
+        this.releaseLockedCardsAndMembers();
+        this.clean();
+    }
+
     /* reset, only for testing */
 
     public resetMembersAndCards(){
@@ -258,5 +264,13 @@ export default class Picking {
 
     public getReady():boolean[] {
         return this.ready;
+    }
+
+    private releaseLockedCardsAndMembers() {
+        for (var i = 0; i < this.teamSet.getTeamCount(); i++) {
+            let team = this.teamSet.getTeam(i);
+            team.removeMemberLocks();
+            team.restoreUnusedCards();
+        }
     }
 }

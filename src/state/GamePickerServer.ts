@@ -42,6 +42,11 @@ export default class GamePickerServer extends Server {
         this.emitInitial();
     }
 
+    release() {
+        console.log('released GPS');
+        this.picking.abortPickingProcess();
+    }
+
     private emitInitial() {
         this.emit({
             event: "init",
