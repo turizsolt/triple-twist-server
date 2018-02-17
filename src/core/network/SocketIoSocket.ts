@@ -12,4 +12,8 @@ export class SocketIoSocket implements GeneralSocket {
     on(eventName: string, callback: Function) {
         this.socket.on(eventName, callback);
     }
+
+    getRef():Object {
+        return this.socket;
+    }
 }

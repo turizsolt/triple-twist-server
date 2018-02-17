@@ -24,6 +24,7 @@ export default class SocketIoCommunication implements Communication {
         return (socket: Socket) => {
             socket.on('message', that.incoming.onMessage);
             socket.on('login', that.onLogin(that, socket));
+            socket.on('update-login', that.onUpdateLogin(that, socket));
         };
     }
 
@@ -38,6 +39,18 @@ export default class SocketIoCommunication implements Communication {
             );
 
             socket.emit("loggedin", {ok: true});
+        }
+    }
+
+    private onUpdateLogin(that:SocketIoCommunication, socket:Socket) {
+        console.log("onUpdateLogin");
+        return (data: any) => {
+            let compSocket = new SocketIoSocket(socket);
+            that.outgoing.updatePeer(
+                peer => peer.isSame(compSocket),
+                data.type, data.teamId);
+
+            socket.emit("updated-login", {ok: true});
         }
     }
 };

@@ -23,4 +23,8 @@ export default class Peer {
             return destination == this.type && teamId == this.teamId;
         }
     }
+
+    isSame(compSocket: GeneralSocket):boolean {
+        return this.socket.getRef() === compSocket.getRef();
+    }
 };

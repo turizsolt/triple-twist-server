@@ -24,4 +24,15 @@ export default class OutgoingRouter {
             parameters: options.parameters || {}
         };
     }
+
+    updatePeer(predicate: (peer) => boolean, type:PeerType, teamId?: number) {
+        let x = this.peers.findIndex(predicate);
+        if(x !== -1) {
+            this.peers[x].type = type;
+            this.peers[x].teamId = teamId;
+            console.log('peer #'+x+" updated: "+type+" "+teamId);
+        } else {
+            console.log('no peer such found');
+        }
+    }
 };
