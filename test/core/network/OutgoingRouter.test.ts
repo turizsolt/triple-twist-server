@@ -20,20 +20,33 @@ describe("OutgoingRouter", () => {
         callback = sinon.spy();
         socket = {
             emit: callback,
-            on: () => {}
+            on: () => {},
+            getRef: () => {return new Object();}
         };
         peer = new Peer(PeerType.Team, socket, TEAM_ID);
     });
 
     it("Added peer emits", () => {
         router.registerPeer(peer);
-        router.send(PeerType.Team, MESSAGE, TEST_DATA, TEAM_ID);
+        router.emit({
+            to: PeerType.Team,
+            type: MESSAGE,
+            event: MESSAGE,
+            parameters: TEST_DATA,
+            teamId: TEAM_ID
+        });
         expect(callback.calledOnce);
     });
 
     it("Added peer does not emit", () => {
         router.registerPeer(peer);
-        router.send(PeerType.Screen, MESSAGE, TEST_DATA);
+        router.emit({
+            to: PeerType.Screen,
+            type: MESSAGE,
+            event: MESSAGE,
+            parameters: TEST_DATA,
+            teamId: TEAM_ID
+        });
         expect(callback.called).false;
     });
 });
