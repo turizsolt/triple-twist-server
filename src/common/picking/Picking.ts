@@ -11,6 +11,7 @@ import Util from '../../core/util/Util';
 import Countdown from '../../core/util/Countdown';
 import PickingCardQueue from "./PickingCardQueue";
 import QueueCard from "../team/QueueCard";
+import {isNullOrUndefined} from "util";
 
 // Todo prettify
 // Todo depends to the TeamSet
@@ -62,9 +63,9 @@ export default class Picking {
 
     /* starts the countdown */
 
-    public startCountdown(_tick: (_second:number) => void, _over: () => void, _second:number=30){
+    public startCountdown(_tick: (_second:number) => void, _over: () => void, _second?:number){
         //var _second = 30; // or 20
-        this.countdown = new Countdown(_second, _tick, _over);
+        this.countdown = new Countdown(_second || 30, _tick, _over);
     }
 
     public abortPickingProcess() {
@@ -219,7 +220,8 @@ export default class Picking {
     // This function returns the result of the picking
     // If there is no result at the moment it also computes it
 
-    public getResult(shouldSerialise:boolean=true):any {
+    public getResult(shouldSerialise?:boolean):any {
+        shouldSerialise = shouldSerialise === undefined || shouldSerialise;
         if (!this.result) {
 
             this.result = [];

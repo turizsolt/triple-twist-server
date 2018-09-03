@@ -21,8 +21,8 @@ export default class Team{
 
     constructor(_id:number, _name: string, _color:string, _member: Member[],
                 _cardType: CardType[], _anytimeCardType: CardType[],
-                _card: Card[]=null, _anytimeCard: Card[]=null,
-                _point:number=0, _pointToAdd:number=0) {
+                _card?: Card[], _anytimeCard?: Card[],
+                _point?:number, _pointToAdd?:number) {
         this.id = _id;
         this.name = _name;
         this.color = _color;

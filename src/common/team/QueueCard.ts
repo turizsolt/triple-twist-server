@@ -9,10 +9,10 @@ export default class QueueCard{
     private card: TeamCard;
     private processResult: CardProcessResult;
 
-    constructor(_teamId, _card:TeamCard, _processResult:CardProcessResult=CardProcessResult.NotDetermined){
+    constructor(_teamId, _card:TeamCard, _processResult?:CardProcessResult){
         this.teamId = _teamId;
         this.card = _card;
-        this.processResult = _processResult;
+        this.processResult = (_processResult === undefined)?CardProcessResult.NotDetermined:_processResult;
     }
 
     public setProcessResult(_processResult:CardProcessResult):void {

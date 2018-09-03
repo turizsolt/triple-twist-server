@@ -17,14 +17,14 @@ export default class Member{
     private used:number;
 
     constructor(_id: number, _name:string, _pic:string, _col:string, _left:number,
-                _locked:boolean=false, _used:number=0){
+                _locked?:boolean, _used?:number){
         this.id = _id;
         this.name = _name;
         this.pic = _pic;
         this.col = _col;
         this.left = _left;
-        this.locked = _locked;
-        this.used = _used;
+        this.locked = _locked || false;
+        this.used = _used || 0;
         this.team = null;
     }
 

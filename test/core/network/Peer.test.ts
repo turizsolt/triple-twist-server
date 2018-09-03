@@ -3,9 +3,10 @@ import Peer from "../../../src/core/network/Peer";
 import {GeneralSocket} from "../../../src/core/network/GeneralSocket";
 
 describe("Peer", () => {
-    var socket:GeneralSocket = socket = {
+    var socket:GeneralSocket = {
             emit: () => {},
-            on: () => {}
+            on: () => {},
+            getRef: null
         };
 
     it("Match ALL", () => {

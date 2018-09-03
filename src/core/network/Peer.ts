@@ -6,9 +6,11 @@ export default class Peer {
     constructor(
         public type: PeerType,
         public socket: GeneralSocket,
-        public teamId: number=-1
+        public teamId?: number
     ) {
-
+        if(!teamId) {
+            this.teamId = -1;
+        }
     }
 
     emit(eventName:string, data:any) {

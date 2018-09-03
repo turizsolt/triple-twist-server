@@ -6,9 +6,9 @@ export default class Card{
     private type:CardType;
     private used:CardUsed;
 
-    constructor(_type:CardType, _used:CardUsed=CardUsed.Avaiable){
+    constructor(_type:CardType, _used?:CardUsed){
         this.type = _type;
-        this.used = _used;
+        this.used = _used || CardUsed.Avaiable;
     }
 
     public serialise():any{
